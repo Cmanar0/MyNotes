@@ -2,7 +2,7 @@
 
 ## IP Addresses:
 
-Find info about your IP addresses:
+The most significant protocol at layer 3 (also called the network layer) is the Internet Protocol, or IP. IP is the standard for routing packets across interconnected networks--hence, the name internet. It is an encapsulating protocol similar to the way Ethernet is an encapsulating protocol.
 
 //Find info about your IP addresses:
 
