@@ -26,6 +26,10 @@ const restaurant = {
     )
   },
 
+  orderPasta(ing1, ing2, ing3) {
+    console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`)
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -94,45 +98,95 @@ const restaurant = {
 
 // // -------------------- PRACTICE DESCRUCTURING ARRAYS - END -------------------
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// -------------------- PRACTICE DESCRUCTURING OBJECTS - END -------------------
+// // -------------------- PRACTICE DESCRUCTURING OBJECTS - END -------------------
 
-// 1) the order of the properties doesn't matter. (in arrays it does)
-const { name, openingHours, categories } = restaurant
-console.log(name, openingHours, categories) //here we have the variable names same as the property names - it might cause problems as for example in htis case "name" is reserved by javascript and so we should not use it.
+// // 1) the order of the properties doesn't matter. (in arrays it does)
+// const { name, openingHours, categories } = restaurant
+// console.log(name, openingHours, categories) //here we have the variable names same as the property names - it might cause problems as for example in htis case "name" is reserved by javascript and so we should not use it.
 
-// 2)  destructure object using CUSTOM VARIABLE NAMES
-const { name: restaurantName, openingHours: hours, categories: tags } = restaurant
-console.log(restaurantName, hours, tags) //
+// // 2)  destructure object using CUSTOM VARIABLE NAMES
+// const { name: restaurantName, openingHours: hours, categories: tags } = restaurant
+// console.log(restaurantName, hours, tags) //
 
-// 3) Setting DEFAULT VALUES
-const { menu = `"default value - can be array or whatever"`, starterMenu: starters = [] } = restaurant //we both name our custom variable and set a default value in case we dont find it in the object
-console.log(menu, starters)
+// // 3) Setting DEFAULT VALUES
+// const { menu = `"default value - can be array or whatever"`, starterMenu: starters = [] } = restaurant //we both name our custom variable and set a default value in case we dont find it in the object
+// console.log(menu, starters)
 
-// 4) MUTATING VARIABLES
-let a = 111
-let b = 999
-const obj = { a: 23, b: 7, c: 14 }
-;({ a, b } = obj) // we wrap it into () because we cant start the row with curly {}
-console.log(a, b)
+// // 4) MUTATING VARIABLES
+// let a = 111
+// let b = 999
+// const obj = { a: 23, b: 7, c: 14 }
+// ;({ a, b } = obj) // we wrap it into () because we cant start the row with curly {}
+// console.log(a, b)
 
-// 5) Nested objects
-const {
-  fri: { open: o, close: c }
-} = openingHours
-console.log(o, c)
+// // 5) Nested objects
+// const {
+//   fri: { open: o, close: c }
+// } = openingHours
+// console.log(o, c)
 
-// 6) Destructuring Objects that are passed in a function (in this case it`s the "orderDelivery" method inside the "restaurant" object)
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2
-})
+// // 6) Destructuring Objects that are passed in a function (in this case it`s the "orderDelivery" method inside the "restaurant" object)
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2
+// })
 
-restaurant.orderDelivery({
-  // we don`t specify time nor mainIndex here and so the function will use the default values (defined in the function above)
-  address: 'Via del Sole, 21',
-  starterIndex: 1
-})
+// restaurant.orderDelivery({
+//   // we don`t specify time nor mainIndex here and so the function will use the default values (defined in the function above)
+//   address: 'Via del Sole, 21',
+//   starterIndex: 1
+// })
 
-// -------------------- PRACTICE DESCRUCTURING OBJECTS - END -------------------
+// // -------------------- PRACTICE DESCRUCTURING OBJECTS - END -------------------
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// // -------------------- PRACTICE THE SPREAD OPERATOR - START -------------------
+// // 1) We can use SPREAD OPERATOR to access all it`s values. So basically unpacking all the array values at one.
+// const arr = [7, 8, 9]
+// // if we want to expand this array with some other elements, normaly we would have to do it like this for example:
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]]
+// console.log(badNewArr)
+// //with the spread operator:
+// const newArrSpreadOperator = [1, 2, ...arr] //the three ... take all the values out of this arr array and then write them individually as if we wrote 7, 8 ,9 manually. if we wrote just arr without the three ... - it would import the list not its values
+// console.log(newArrSpreadOperator)
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'] //we are building a new array here. We are not affecting the original one at all.
+// console.log(newMenu)
+// // THE DIFFERENCE BETWEEN DESTRUCTURING AND SPREAD OPERATOR IS THAT SPREAD OPERATOR DODESNT CREATE NEW VARIABLES
+// // we can only USE SPREAD OPERATOR in places where we would otherwise write values separated by commas.
+
+// // 2) Copy array
+// const mainMenuCopy = [...restaurant.mainMenu]
+
+// // 3) Join 2 arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]
+
+// // 4) Spread operator doesn`t only work on arrays. It also works on ITERABLES
+// //    Iterables are for example: arrays, strings, maps, or sets.
+// //    Iterables are NOT objects.
+
+// // 5) Spread operator - STRINGS
+// const str = 'Jonas'
+// const letters = [...str, ' ', 's.']
+// console.log(letters) // -> ['J', 'o', 'n', 'a', 's', ' ', 's.']
+// // spread operator will treat the string like array and take its values
+
+// // 6) Real-world example
+// const ingredients = [
+//   // prompt("Let's make pasta! Ingredient 1?"),
+//   // prompt('Ingredient 2?'),
+//   // prompt('Ingredient 3'),
+// ]
+// console.log(ingredients)
+
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2])
+// restaurant.orderPasta(...ingredients)
+
+// 7) Objects are not Iterables, but spread operator works on it as well since ES2018
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' }
+console.log(newRestaurant)
+
+const restaurantCopy = { ...restaurant }
+restaurantCopy.name = 'Ristorante Roma'
+console.log(restaurantCopy)
+console.log(restaurant)
